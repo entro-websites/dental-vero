@@ -4,40 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dental Vero - stomatološka ordinacija</title>
+<meta name="description" content="Dental Vero - stomatološka ordinacija. Pregledi, lečenje karijesa, estetsko beljenje, protetika i još dosta toga. Zakažite pregled.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --accent: #89B491;
-    --accent-dark: #5f8f68;
-    --ink: #1c211d;
-    --muted: #5b625c;
-    --line: #e2e6e2;
+    --primary: #89B491;
+    --primary-dark: #6f9a7c;
+    --text: #20241f;
+    --muted: #5c625d;
     --bg: #ffffff;
-    --bg-soft: #f6f8f6;
+    --bg-alt: #f5f7f4;
+    --border: #e1e5df;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
 
   body {
     font-family: 'Inter', sans-serif;
-    color: var(--ink);
+    color: var(--text);
     background: var(--bg);
+    font-size: 16px;
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+
+  img { max-width: 100%; display: block; }
 
   h1, h2, h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    line-height: 1.05;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    letter-spacing: 0.01em;
+    line-height: 1.2;
+    color: var(--text);
   }
 
-  a { color: inherit; text-decoration: none; }
+  a { color: inherit; }
 
   .wrap {
     max-width: 1280px;
@@ -51,480 +58,731 @@
     padding-bottom: 96px;
   }
 
-  /* ---------- NAVBAR ---------- */
-  header {
+  .section-alt { background: var(--bg-alt); }
+
+  .section-border-top { border-top: 1px solid var(--border); }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .lead {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 65ch;
+  }
+
+  .section-head {
+    max-width: 700px;
+    margin-bottom: 56px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-outline:hover { border-color: var(--primary); color: var(--primary-dark); }
+
+  /* NAVBAR */
+  .navbar {
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(255,255,255,0.97);
-    border-bottom: 1px solid var(--line);
+    z-index: 1000;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
   }
-  .nav {
+
+  .navbar-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    height: 84px;
+    position: relative;
   }
-  .logo img { height: 40px; display: block; }
-  .nav-links {
+
+  .logo img { height: 38px; }
+
+  .nav-menu {
     display: flex;
     align-items: center;
     gap: 32px;
   }
-  .nav-links a { color: var(--ink); font-weight: 500; font-size: 15px; }
-  .nav-links a:hover { color: var(--accent-dark); }
 
-  .btn {
-    display: inline-block;
-    background: var(--accent);
-    color: #14201a;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
+  .nav-menu a {
+    text-decoration: none;
+    font-weight: 500;
     font-size: 15px;
-    padding: 12px 22px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.15s ease;
+    color: var(--text);
   }
-  .btn:hover { background: var(--accent-dark); color: #fff; }
+  .nav-menu a:hover { color: var(--primary-dark); }
 
-  .btn-ghost {
-    background: transparent;
-    border: 1px solid var(--line);
-    color: var(--ink);
-  }
-  .btn-ghost:hover { border-color: var(--accent); background: transparent; color: var(--accent-dark); }
+  .nav-menu .btn { margin-left: 8px; }
+
+  .menu-toggle { display: none; }
 
   .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
-    background: none;
-    border: none;
     cursor: pointer;
     padding: 8px;
   }
   .hamburger span {
     width: 24px;
     height: 2px;
-    background: var(--ink);
+    background: var(--text);
     display: block;
   }
 
-  .mobile-menu {
-    display: none;
-    border-top: 1px solid var(--line);
-    background: #fff;
-  }
-  .mobile-menu.open { display: block; }
-  .mobile-menu .wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding-top: 16px;
-    padding-bottom: 24px;
-  }
-  .mobile-menu a {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    font-weight: 500;
-    border-bottom: 1px solid var(--line);
-  }
-  .mobile-menu .btn { margin-top: 16px; text-align: center; }
-
-  /* ---------- HERO ---------- */
-  .hero { padding-top: 100px; padding-bottom: 100px; background: var(--bg-soft); }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 56px;
-    align-items: center;
-  }
-  .hero h1 {
-    font-size: 68px;
-    letter-spacing: 0.01em;
-  }
-  .hero .lead {
-    font-size: 19px;
-    color: var(--muted);
-    max-width: 46ch;
-    margin-top: 22px;
-    margin-bottom: 32px;
-  }
-  .eyebrow {
-    display: inline-block;
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent-dark);
-    font-weight: 600;
-    margin-bottom: 18px;
-  }
-  .hero-img {
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-  }
-  .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  /* ---------- STATS ---------- */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    margin-top: 44px;
-  }
-  .stats div {
-    padding-top: 26px;
-    padding-bottom: 26px;
-    padding-left: 24px;
-    padding-right: 24px;
-    border-right: 1px solid var(--line);
-  }
-  .stats div:last-child { border-right: none; }
-  .stats .num { font-family: 'Barlow Condensed', sans-serif; font-size: 40px; color: var(--accent-dark); font-weight: 700; }
-  .stats .lbl { font-size: 14px; color: var(--muted); }
-
-  /* ---------- SECTION HEADS ---------- */
-  .sec-head { max-width: 640px; margin-bottom: 48px; }
-  .sec-head h2 { font-size: 46px; }
-  .sec-head p { color: var(--muted); font-size: 17px; margin-top: 16px; max-width: 60ch; }
-
-  /* ---------- SERVICES ---------- */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .service {
-    padding-top: 34px;
-    padding-bottom: 34px;
-    padding-left: 30px;
-    padding-right: 30px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .service svg { width: 34px; height: 34px; stroke: var(--accent-dark); margin-bottom: 18px; }
-  .service h3 { font-size: 24px; margin-bottom: 10px; }
-  .service p { color: var(--muted); font-size: 15px; }
-
-  /* ---------- WHY ---------- */
-  .why { background: var(--bg-soft); }
-  .why-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 56px;
-    align-items: center;
-  }
-  .why-img {
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-  }
-  .why-img img { width: 100%; display: block; }
-  .why-list { display: flex; flex-direction: column; gap: 26px; }
-  .why-item { display: flex; gap: 18px; }
-  .why-item svg { width: 26px; height: 26px; stroke: var(--accent-dark); flex-shrink: 0; margin-top: 3px; }
-  .why-item h3 { font-size: 22px; margin-bottom: 6px; }
-  .why-item p { color: var(--muted); font-size: 15px; max-width: 46ch; }
-
-  /* ---------- GALLERY ---------- */
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  .gallery-grid figure {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .gallery-grid img { width: 100%; height: 320px; object-fit: cover; display: block; }
-
-  /* ---------- PLACEHOLDER ---------- */
-  .ph {
-    background: #e9ede9;
-    color: #7c837d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 600;
-    min-height: 200px;
-    padding: 20px;
-  }
-
-  /* ---------- CTA ---------- */
-  .cta {
-    background: var(--ink);
-    color: #fff;
-    border-radius: 8px;
-    padding-top: 64px;
-    padding-bottom: 64px;
-    padding-left: 48px;
-    padding-right: 48px;
-    text-align: center;
-  }
-  .cta h2 { font-size: 46px; color: #fff; }
-  .cta p { color: #c7ccc8; max-width: 48ch; margin-left: auto; margin-right: auto; margin-top: 16px; margin-bottom: 32px; }
-
-  .contact-row {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    font-size: 15px;
-    color: #c7ccc8;
-  }
-  .contact-row strong { color: #fff; font-weight: 600; }
-
-  /* ---------- FOOTER ---------- */
-  footer {
-    border-top: 1px solid var(--line);
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-  .foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .foot img { height: 34px; }
-  .foot p { font-size: 14px; color: var(--muted); }
-
-  /* ---------- RESPONSIVE ---------- */
   @media (max-width: 991px) {
-    .nav-links { display: none; }
     .hamburger { display: flex; }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 84px;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .nav-menu a {
+      width: 100%;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .nav-menu .btn {
+      margin: 12px 0 8px 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+      display: flex;
+    }
   }
 
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-    .why-grid { grid-template-columns: 1fr; gap: 40px; }
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  /* HERO */
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .hero h1 {
+    font-size: 52px;
+    margin-bottom: 20px;
+  }
+
+  .hero .lead { margin-bottom: 32px; }
+
+  .hero-image img {
+    border-radius: 8px;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+  }
+
+  @media (max-width: 991px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      padding-top: 48px;
+      padding-bottom: 16px;
+    }
+    .hero h1 { font-size: 38px; }
+    .hero-image img { height: 280px; }
+  }
+
+  /* PREDNOSTI */
+  .cards-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .card .icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 20px;
+    color: var(--primary);
+  }
+
+  .card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    color: var(--muted);
+    font-size: 15px;
   }
 
   @media (max-width: 768px) {
-    .section { padding-top: 64px; padding-bottom: 64px; }
-    .hero { padding-top: 56px; padding-bottom: 56px; }
-    .hero h1 { font-size: 46px; }
-    .sec-head h2, .cta h2 { font-size: 34px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: 1fr; }
-    .stats { grid-template-columns: 1fr; }
-    .stats div { border-right: none; border-bottom: 1px solid var(--line); }
-    .stats div:last-child { border-bottom: none; }
-    .cta { padding-left: 24px; padding-right: 24px; }
-    .contact-row { gap: 16px; flex-direction: column; }
+    .cards-3 { grid-template-columns: 1fr; }
   }
 
-  @media (max-width: 400px) {
-    .hero h1 { font-size: 38px; }
-    .wrap { padding-left: 20px; padding-right: 20px; }
+  /* USLUGE */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding-top: 28px;
+    padding-bottom: 28px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .service-card .icon {
+    width: 28px;
+    height: 28px;
+    color: var(--primary);
+    margin-bottom: 16px;
+  }
+
+  .service-card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 991px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  /* GALERIJA */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .gallery-item img {
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
+
+  .gallery-item p {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+
+  /* O NAMA */
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .about-text p { color: var(--muted); margin-bottom: 16px; max-width: 65ch; }
+
+  .placeholder-block {
+    background: #e7e9e4;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 991px) {
+    .about-inner { grid-template-columns: 1fr; }
+    .placeholder-block { height: 240px; }
+  }
+
+  /* KONTAKT */
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+  }
+
+  .form-group { margin-bottom: 18px; }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: #ffffff;
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .contact-info-item {
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .contact-info-item:first-child { border-top: none; }
+
+  .contact-info-item h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .contact-info-item p {
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .map-placeholder {
+    margin-top: 24px;
+    height: 180px;
+    background: #e7e9e4;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  @media (max-width: 991px) {
+    .contact-inner { grid-template-columns: 1fr; }
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg-alt);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    padding-top: 64px;
+    padding-bottom: 40px;
+  }
+
+  .footer-col h3 {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .footer-col a {
+    display: block;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .footer-col a:hover { color: var(--primary-dark); }
+
+  .footer-logo img { height: 34px; margin-bottom: 16px; }
+  .footer-col p.tagline { color: var(--muted); font-size: 14px; max-width: 40ch; }
+
+  .social-row { display: flex; gap: 12px; margin-top: 16px; }
+  .social-row a {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+  .social-row svg { width: 16px; height: 16px; color: var(--primary-dark); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    h2 { font-size: 28px; }
+    .section-head { margin-bottom: 40px; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a href="#" class="logo" aria-label="Dental Vero početna">
-      <img src="assets/download-removebg-preview.png" alt="Logo stomatološke ordinacije Dental Vero">
+<header class="navbar">
+  <div class="wrap navbar-inner">
+    <a href="#" class="logo">
+      <img src="assets/download-removebg-preview.png" alt="Dental Vero logo">
     </a>
-    <nav class="nav-links">
-      <a href="#usluge">Usluge</a>
-      <a href="#zasto">Zašto mi</a>
-      <a href="#ordinacija">Ordinacija</a>
-      <a href="#kontakt" class="btn">Zakaži termin</a>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="Otvori meni">
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="hamburger" aria-label="Otvori meni">
       <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="wrap">
+    </label>
+
+    <nav class="nav-menu">
+      <a href="#prednosti">Prednosti</a>
       <a href="#usluge">Usluge</a>
-      <a href="#zasto">Zašto mi</a>
-      <a href="#ordinacija">Ordinacija</a>
-      <a href="#kontakt" class="btn">Zakaži termin</a>
-    </div>
+      <a href="#galerija">Galerija</a>
+      <a href="#o-nama">O nama</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#kontakt" class="btn btn-primary">Zakaži pregled</a>
+    </nav>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Stomatološka ordinacija Dental Vero</span>
-      <h1>Zub vas boli danas. Kod nas dolazite danas.</h1>
-      <p class="lead">Zoveš, dobiješ termin, dođeš i rešiš problem. Bez čekanja od dve nedelje i bez straha od stolice. Radimo tako da izađeš mirniji nego što si ušao.</p>
-      <a href="#kontakt" class="btn">Zakaži pregled</a>
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <h1>Bolan zub rešavamo, ne uplašimo vas dodatno</h1>
+      <p class="lead">U Dental Vero pregledamo zub, pokažemo vam šta vidimo na rendgenu i predložimo tretman koji ima smisla za vaš problem, ne za naš raspored.</p>
+      <a href="#kontakt" class="btn btn-primary">Zakaži pregled</a>
     </div>
-    <div class="hero-img">
-      <img src="assets/unnamed (2).webp" alt="Stomatološka stolica i oprema u ordinaciji Dental Vero, prostorija sa velikim prozorom">
+    <div class="hero-image">
+      <img src="assets/unnamed (2).webp" alt="Stomatološka stolica i oprema u ordinaciji Dental Vero, pored prozora">
     </div>
   </div>
 </section>
 
-<!-- USLUGE -->
+<section class="section section-alt section-border-top" id="prednosti">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Prednosti</span>
+      <h2>Šta je drugačije kod nas</h2>
+      <p class="lead">Tri stvari koje pacijenti primete već na prvom pregledu.</p>
+    </div>
+
+    <div class="cards-3">
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="12" rx="1"></rect>
+          <line x1="8" y1="20" x2="16" y2="20"></line>
+          <line x1="12" y1="16" x2="12" y2="20"></line>
+          <line x1="7" y1="8" x2="12" y2="8"></line>
+          <line x1="7" y1="11" x2="10" y2="11"></line>
+        </svg>
+        <h3>Oprema koja skraćuje čekanje</h3>
+        <p>Radimo sa digitalnim rendgenom, pa vidimo stanje zuba odmah, bez čekanja na film da se razvije. Manje snimaka, manje zračenja, brži nalaz.</p>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21s-7-4.5-7-10a4.5 4.5 0 0 1 7-3.7A4.5 4.5 0 0 1 19 11c0 5.5-7 10-7 10z"></path>
+        </svg>
+        <h3>Bez straha od stolice</h3>
+        <p>Pre svakog tretmana objasnimo šta radimo i zašto. Koristimo anesteziju gde treba i ne žurimo kroz proceduru samo da bismo stigli sledeći termin.</p>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="8" r="3"></circle>
+          <path d="M2 20c0-3.3 3.1-6 7-6s7 2.7 7 6"></path>
+          <circle cx="17" cy="9" r="2.4"></circle>
+          <path d="M15.5 14.2c2.6.5 4.5 2.4 4.5 4.8"></path>
+        </svg>
+        <h3>Tim koji zna vaš slučaj</h3>
+        <p>Doktor koji vas pregleda prvi put prati vas i na sledećoj poseti. Ne prepričavate iznova istu priču novom licu svaki put.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="usluge">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>Šta radimo</h2>
-      <p>Od redovne kontrole do izrade novih zuba. Ako ne znaš šta ti tačno treba, dođi na pregled pa ćemo ti reći iskreno.</p>
+    <div class="section-head">
+      <span class="eyebrow">Usluge</span>
+      <h2>Šta sve radimo</h2>
+      <p class="lead">Od redovne kontrole do estetskih zahvata, sve pod istim krovom.</p>
     </div>
+
     <div class="services-grid">
-      <div class="service">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C7 2 6 6 6 9c0 3 1 6 2 9 .5 1.5 1.5 2 2 2s1.5-.7 2-3c.3-1 .7-1 1 0 .5 2.3 1 3 2 3s1.5-.5 2-2c1-3 2-6 2-9 0-3-1-7-6-7-.7 0-1.3.3-2 .6-.7-.3-1.3-.6-2-.6z"/></svg>
-        <h3>Popravke i plombe</h3>
-        <p>Karijes, ispale plombe, bol u zubu. Sredimo isti dan i kažemo ti šta da paziš da se ne ponovi.</p>
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 1.6-4 4 0 2.4 1 3.4 1 6.5 0 2.2-.8 3.5-.8 5.2 0 1 .7 1.3 1.2 1.3.9 0 1-2.7 2.6-2.7s1.7 2.7 2.6 2.7c.5 0 1.2-.3 1.2-1.3 0-1.7-.8-3-.8-5.2 0-3.1 1-4.1 1-6.5 0-2.4-1.5-4-4-4z"></path></svg>
+        <h3>Pregled i konsultacije</h3>
+        <p>Prvi korak pre svakog tretmana. Kažemo vam tačno šta vidimo i šta predlažemo.</p>
       </div>
-      <div class="service">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-4 8-8 4 4-8 8-4 4z"/><path d="M12 8l4 4"/></svg>
-        <h3>Estetska stomatologija</h3>
-        <p>Beljenje, keramičke ljuspice i sređivanje osmeha. Prvo ti pokažemo kako će izgledati, pa tek onda radimo.</p>
+
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 1.6-4 4 0 2.4 1 3.4 1 6.5 0 2.2-.8 3.5-.8 5.2 0 1 .7 1.3 1.2 1.3.9 0 1-2.7 2.6-2.7s1.7 2.7 2.6 2.7c.5 0 1.2-.3 1.2-1.3 0-1.7-.8-3-.8-5.2 0-3.1 1-4.1 1-6.5 0-2.4-1.5-4-4-4z"></path></svg>
+        <h3>Lečenje karijesa</h3>
+        <p>Čistimo karijes i vraćamo zub u funkciju, materijalima koji drže godinama.</p>
       </div>
-      <div class="service">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 1.6-4 4 0 2.4 1 3.4 1 6.5 0 2.2-.8 3.5-.8 5.2 0 1 .7 1.3 1.2 1.3.9 0 1-2.7 2.6-2.7s1.7 2.7 2.6 2.7c.5 0 1.2-.3 1.2-1.3 0-1.7-.8-3-.8-5.2 0-3.1 1-4.1 1-6.5 0-2.4-1.5-4-4-4z"></path></svg>
         <h3>Endodoncija</h3>
-        <p>Lečenje kanala korena kada je zub inflamiran. Radimo pod uveličanjem da ne promašimo nijedan kanal.</p>
+        <p>Lečenje kanala kad bol dođe do korena zuba. Radimo pažljivo, u više poseta ako treba.</p>
       </div>
-      <div class="service">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 7h8"/><circle cx="12" cy="15" r="3"/></svg>
-        <h3>Implanti</h3>
-        <p>Ako ti fali zub, ugradimo implant koji drži kao pravi. Prvo snimak, pa plan, pa rad.</p>
+
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 1.6-4 4 0 2.4 1 3.4 1 6.5 0 2.2-.8 3.5-.8 5.2 0 1 .7 1.3 1.2 1.3.9 0 1-2.7 2.6-2.7s1.7 2.7 2.6 2.7c.5 0 1.2-.3 1.2-1.3 0-1.7-.8-3-.8-5.2 0-3.1 1-4.1 1-6.5 0-2.4-1.5-4-4-4z"></path></svg>
+        <h3>Estetsko beljenje</h3>
+        <p>Posvetljujemo boju zuba za poseban povod ili samo zato što želite lepši osmeh.</p>
       </div>
-      <div class="service">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="10" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
+
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 1.6-4 4 0 2.4 1 3.4 1 6.5 0 2.2-.8 3.5-.8 5.2 0 1 .7 1.3 1.2 1.3.9 0 1-2.7 2.6-2.7s1.7 2.7 2.6 2.7c.5 0 1.2-.3 1.2-1.3 0-1.7-.8-3-.8-5.2 0-3.1 1-4.1 1-6.5 0-2.4-1.5-4-4-4z"></path></svg>
         <h3>Protetika</h3>
-        <p>Krunice, mostovi i proteze kada treba zameniti više zuba. Radimo tako da ti se vrati pravo zagrizanje.</p>
+        <p>Krunice, mostovi i proteze koje pravimo po meri vaše vilice.</p>
       </div>
-      <div class="service">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 4 4 .5-3 3 .7 4L12 16.5 8.3 14.5 9 10.5 6 7.5 10 7z"/></svg>
-        <h3>Čišćenje i profilaksa</h3>
-        <p>Uklanjamo kamenac i pigmentacije. Preporučujem kontrolu dvaput godišnje pa nemaš iznenađenja.</p>
+
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 1.6-4 4 0 2.4 1 3.4 1 6.5 0 2.2-.8 3.5-.8 5.2 0 1 .7 1.3 1.2 1.3.9 0 1-2.7 2.6-2.7s1.7 2.7 2.6 2.7c.5 0 1.2-.3 1.2-1.3 0-1.7-.8-3-.8-5.2 0-3.1 1-4.1 1-6.5 0-2.4-1.5-4-4-4z"></path></svg>
+        <h3>Vađenje zuba</h3>
+        <p>Kad zub više ne može da se spasi, izvadimo ga uz minimalnu nelagodnost.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 1.6-4 4 0 2.4 1 3.4 1 6.5 0 2.2-.8 3.5-.8 5.2 0 1 .7 1.3 1.2 1.3.9 0 1-2.7 2.6-2.7s1.7 2.7 2.6 2.7c.5 0 1.2-.3 1.2-1.3 0-1.7-.8-3-.8-5.2 0-3.1 1-4.1 1-6.5 0-2.4-1.5-4-4-4z"></path></svg>
+        <h3>Lečenje desni</h3>
+        <p>Parodontološka terapija za desni koje krvare ili se povlače.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 1.6-4 4 0 2.4 1 3.4 1 6.5 0 2.2-.8 3.5-.8 5.2 0 1 .7 1.3 1.2 1.3.9 0 1-2.7 2.6-2.7s1.7 2.7 2.6 2.7c.5 0 1.2-.3 1.2-1.3 0-1.7-.8-3-.8-5.2 0-3.1 1-4.1 1-6.5 0-2.4-1.5-4-4-4z"></path></svg>
+        <h3>Dečija stomatologija</h3>
+        <p>Prvi pregled za dete radimo drugačije, sa strpljenjem i bez žurbe.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ZASTO -->
-<section class="section why" id="zasto">
-  <div class="wrap why-grid">
-    <div class="why-img">
-      <img src="assets/unnamed (3).webp" alt="Stomatološka stolica sa monitorom i računarom u ordinaciji Dental Vero">
-    </div>
-    <div class="why-list">
-      <div class="why-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .8-4.5 4.3 1.1 6L12 16.4 6.4 19l1.1-6L3 8.8 9 8z"/></svg>
-        <div>
-          <h3>Savremena oprema</h3>
-          <p>Digitalni snimci, rad pod uveličanjem i mašine koje kupujemo da bi ti manje sedeo u stolici. Vidiš na monitoru šta ti je sa zubom.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9-10a5 5 0 0 1 9-2 5 5 0 0 1 9 2c-2 5.5-9 10-9 10z"/></svg>
-        <div>
-          <h3>Bezbolni tretmani</h3>
-          <p>Anesteziju damo pažljivo i sačekamo da uhvati pre nego što počnemo. Ako se plašiš zubara, reci nam, idemo tvojim tempom.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 20a4.5 4.5 0 0 1 6-3"/></svg>
-        <div>
-          <h3>Stručan tim</h3>
-          <p>Dr Dušan Oljenojević i ekipa koja svaki dan radi ovaj posao. Objasnimo ti šta radimo i zašto, običnim jezikom.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="section section-alt section-border-top" id="galerija">
   <div class="wrap">
-    <div class="stats">
-      <div>
-        <div class="num">6.000+</div>
-        <div class="lbl">obavljenih pregleda</div>
-      </div>
-      <div>
-        <div class="num">2</div>
-        <div class="lbl">opremljene ordinacije</div>
-      </div>
-      <div>
-        <div class="num">24h</div>
-        <div class="lbl">za hitne slučajeve zovi odmah</div>
-      </div>
+    <div class="section-head">
+      <span class="eyebrow">Galerija</span>
+      <h2>Pogledajte prostor</h2>
+      <p class="lead">Ordinacija u kojoj radimo, bez uređivanja i filtera.</p>
     </div>
-  </div>
-</section>
 
-<!-- ORDINACIJA / GALERIJA -->
-<section class="section" id="ordinacija">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Kod nas u ordinaciji</ h2>
-      <p>Svetlo, čisto i tiho. Nema gomile ljudi u čekaonici jer radimo po terminima, ne po redosledu dolaska.</p>
-    </div>
     <div class="gallery-grid">
-      <figure>
-        <img src="assets/unnamed (3).webp" alt="Ordinacija Dental Vero sa stomatološkom stolicom i radnom stanicom">
-      </figure>
-      <figure>
-        <img src="assets/unnamed (4).webp" alt="Vizit karta i fascikla sa logom Dental Vero na stolu">
-      </figure>
-      <figure>
-        <img src="assets/unnamed (2).webp" alt="Prostorija ordinacije Dental Vero sa velikim prozorom i dnevnim svetlom">
-      </figure>
-      <figure>
-        <div class="ph">FOTOGRAFIJA RECEPCIJE / ČEKAONICE</div>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- CTA / KONTAKT -->
-<section class="section" id="kontakt">
-  <div class="wrap">
-    <div class="cta">
-      <h2>Zakaži termin za pregled</h2>
-      <p>Pozovi ili pošalji poruku, dogovorimo termin koji ti odgovara. Za bol koji ne može da čeka, javi se odmah i naći ćemo ti mesto isti dan.</p>
-      <a href="tel:+38160" class="btn">Pozovi i zakaži</a>
-      <div class="contact-row">
-        <span><strong>Telefon:</strong> 060 000 00 00</span>
-        <span><strong>Radno vreme:</strong> pon-pet 09-19h, sub 09-14h</span>
-        <span><strong>Adresa:</strong> upiši ovde adresu ordinacije</span>
+      <div class="gallery-item">
+        <img src="assets/unnamed (2).webp" alt="Stomatološka stolica pored prozora u ordinaciji Dental Vero">
+        <p>Prostor za tretman, pun dnevnog svetla.</p>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/unnamed (3).webp" alt="Stomatološka oprema i radna stanica u ordinaciji">
+        <p>Oprema koju koristimo svaki dan.</p>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/unnamed (4).webp" alt="Fascikla i vizit karta ordinacije Dental Vero pored modela zuba">
+        <p>Materijali koje dobijate na prvom pregledu.</p>
       </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap foot">
-    <img src="assets/download-removebg-preview.png" alt="Logo Dental Vero">
-    <p>© 2024 Dental Vero. Sva prava zadržana.</p>
+<section class="section section-border-top" id="o-nama">
+  <div class="wrap about-inner">
+    <div class="about-text">
+      <span class="eyebrow">O nama</span>
+      <h2>Ordinacija koja pamti svoje pacijente</h2>
+      <p>Dental Vero nije velika mreža klinika sa deset ordinacija u gradu. Radimo u jednom prostoru, sa jednim timom, i to nam odgovara. Kad zakažete termin, znamo ko dolazi i zašto.</p>
+      <p>Ne guramo tretmane koji vam ne trebaju. Ako je dovoljna plomba, kažemo plomba. Ako treba više, objasnimo zašto pre nego što krenemo.</p>
+      <a href="#kontakt" class="btn btn-outline">Zakaži pregled</a>
+    </div>
+    <div class="about-image">
+      <div class="placeholder-block">Fotografija tima ordinacije</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt section-border-top" id="kontakt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Kontakt</span>
+      <h2>Zakažite pregled</h2>
+      <p class="lead">Pošaljite upit ili nas pozovite. Javljamo se isti radni dan i dogovaramo termin koji vam odgovara.</p>
+    </div>
+
+    <div class="contact-inner">
+      <form action="#" method="get">
+        <div class="form-group">
+          <label for="ime">Ime i prezime</label>
+          <input type="text" id="ime" name="ime" placeholder="Vaše ime i prezime">
+        </div>
+        <div class="form-group">
+          <label for="telefon">Telefon</label>
+          <input type="tel" id="telefon" name="telefon" placeholder="060 000 0000">
+        </div>
+        <div class="form-group">
+          <label for="usluga">Usluga koja vas zanima</label>
+          <select id="usluga" name="usluga">
+            <option>Pregled i konsultacije</option>
+            <option>Lečenje karijesa</option>
+            <option>Endodoncija</option>
+            <option>Estetsko beljenje</option>
+            <option>Protetika</option>
+            <option>Vađenje zuba</option>
+            <option>Lečenje desni</option>
+            <option>Dečija stomatologija</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="poruka">Poruka</label>
+          <textarea id="poruka" name="poruka" placeholder="Opišite ukratko šta vas muči ili kad vam termin odgovara"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Pošalji upit</button>
+      </form>
+
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <h3>Telefon</h3>
+          <p>060 33 22 111</p>
+        </div>
+        <div class="contact-info-item">
+          <h3>Email</h3>
+          <p>info@dentalvero.rs</p>
+        </div>
+        <div class="contact-info-item">
+          <h3>Adresa</h3>
+          <p>Vojvode Putnika 22, Vršac</p>
+        </div>
+        <div class="contact-info-item">
+          <h3>Radno vreme</h3>
+          <p>Pon-Pet 09-19h, Sub 09-14h</p>
+        </div>
+        <div class="map-placeholder">Mapa - lokacija ordinacije</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-col footer-logo">
+      <img src="assets/download-removebg-preview.png" alt="Dental Vero logo">
+      <p class="tagline">Stomatološka ordinacija koja radi pošteno, bez guranja tretmana koji vam ne trebaju.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook stranica">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9h2V6h-2c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2l1-3h-3v-2c0-.6.4-1 1-1z"></path></svg>
+        </a>
+        <a href="#" aria-label="Instagram profil">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="4"></rect><circle cx="12" cy="12" r="3.2"></circle><circle cx="16.3" cy="7.7" r="0.6"></circle></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Stranica</h3>
+      <a href="#prednosti">Prednosti</a>
+      <a href="#usluge">Usluge</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#o-nama">O nama</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Kontakt</h3>
+      <a href="tel:0603322111">060 33 22 111</a>
+      <a href="mailto:info@dentalvero.rs">info@dentalvero.rs</a>
+      <a href="#kontakt">Zakaži pregled</a>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <span>© 2024 Dental Vero. Sva prava zadržana.</span>
+    <span>Vojvode Putnika 22, Vršac</span>
   </div>
 </footer>
-
-<script>
-  const ham = document.getElementById('hamburger');
-  const menu = document.getElementById('mobileMenu');
-  ham.addEventListener('click', () => {
-    menu.classList.toggle('open');
-  });
-  menu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => menu.classList.remove('open'));
-  });
-</script>
 
 </body>
 </html>
