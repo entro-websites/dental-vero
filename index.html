@@ -7,7 +7,7 @@
 <meta name="description" content="Dental Vero - stomatološka ordinacija u Vršcu. Pregled, lečenje karijesa, endodoncija, beljenje i protetika. Prvi pregled i savet bez naplate.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #89B491;
@@ -22,6 +22,7 @@
     --border: #e1e5df;
     --radius: 24px;
     --radius-sm: 8px;
+    --pad: 96px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,7 +33,7 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manrope', sans-serif;
     color: var(--text);
     background: var(--bg);
     font-size: 16px;
@@ -43,7 +44,7 @@
   img { max-width: 100%; display: block; }
 
   h1, h2, h3 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-weight: 700;
     line-height: 1.15;
     color: var(--text);
@@ -59,8 +60,8 @@
   }
 
   .section {
-    padding-top: 96px;
-    padding-bottom: 96px;
+    padding-top: var(--pad);
+    padding-bottom: var(--pad);
   }
 
   .section-alt { background: var(--bg-alt); }
@@ -123,7 +124,7 @@
     padding-left: 28px;
     padding-right: 28px;
     border-radius: 999px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 600;
     font-size: 15px;
     text-decoration: none;
@@ -172,12 +173,25 @@
 
   /* ---------- NAVBAR ---------- */
 
+  .top {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(90% 70% at 82% 18%, #dcecdf 0%, rgba(220,236,223,0) 62%),
+      linear-gradient(165deg, #f7fbf8 0%, #e9f2eb 55%, #dceade 100%);
+  }
+
   .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255,255,255,0.96);
-    border-bottom: 1px solid var(--border);
+    background: transparent;
+    transition: background .3s ease, box-shadow .3s ease;
+  }
+
+  .navbar.solid {
+    background: rgba(255,255,255,0.94);
+    box-shadow: 0 1px 0 var(--border);
   }
 
   .navbar-inner {
@@ -272,19 +286,14 @@
 
   /* ---------- HERO ---------- */
 
-  .hero { padding-top: 24px; padding-bottom: 24px; }
-
-  .hero-card {
+  .hero {
     position: relative;
-    overflow: hidden;
-    border-radius: 32px;
-    background:
-      radial-gradient(120% 90% at 82% 12%, #dcecdf 0%, rgba(220,236,223,0) 60%),
-      linear-gradient(160deg, #f6faf7 0%, #e8f2ea 52%, #dceade 100%);
-    padding-top: 64px;
-    padding-bottom: 64px;
-    padding-left: 56px;
-    padding-right: 56px;
+    padding-top: var(--pad);
+    padding-bottom: var(--pad);
+  }
+
+  .hero-inner {
+    position: relative;
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
     gap: 40px;
@@ -293,8 +302,9 @@
 
   .hero-deco {
     position: absolute;
-    inset: 0;
+    inset: -120px 0 0 0;
     pointer-events: none;
+    z-index: 0;
   }
 
   .blob {
@@ -303,13 +313,13 @@
     filter: blur(2px);
     opacity: .5;
   }
-  .blob-1 { width: 260px; height: 260px; background: radial-gradient(circle at 30% 30%, #ffffff, rgba(137,180,145,.35)); top: -70px; left: -60px; animation: drift 18s ease-in-out infinite; }
-  .blob-2 { width: 180px; height: 180px; background: radial-gradient(circle at 60% 40%, rgba(255,255,255,.9), rgba(137,180,145,.28)); bottom: -50px; left: 32%; animation: drift 22s ease-in-out infinite reverse; }
+  .blob-1 { width: 300px; height: 300px; background: radial-gradient(circle at 30% 30%, #ffffff, rgba(137,180,145,.32)); top: -40px; left: -120px; animation: drift 18s ease-in-out infinite; }
+  .blob-2 { width: 220px; height: 220px; background: radial-gradient(circle at 60% 40%, rgba(255,255,255,.85), rgba(137,180,145,.22)); bottom: -90px; left: 4%; opacity: .4; animation: drift 22s ease-in-out infinite reverse; }
 
   .dots {
     position: absolute;
-    right: 40px;
-    bottom: 32px;
+    right: 0;
+    bottom: 0;
     width: 140px;
     height: 90px;
     opacity: .35;
@@ -383,7 +393,7 @@
   .avatars span:nth-child(4) { background: #ffffff; color: var(--primary-deep); border-color: var(--primary); }
 
   .patients strong {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 18px;
     display: block;
   }
@@ -427,8 +437,8 @@
 
   .hero-note {
     position: absolute;
-    right: 56px;
-    bottom: 48px;
+    right: 0;
+    bottom: 0;
     z-index: 3;
     background: #ffffff;
     border: 1px solid var(--border);
@@ -480,14 +490,7 @@
   }
 
   @media (max-width: 991px) {
-    .hero-card {
-      grid-template-columns: 1fr;
-      padding-top: 44px;
-      padding-bottom: 44px;
-      padding-left: 24px;
-      padding-right: 24px;
-      border-radius: 24px;
-    }
+    .hero-inner { grid-template-columns: 1fr; }
     .hero h1 { font-size: 36px; }
     .hero-visual { min-height: 280px; order: -1; padding-bottom: 0; }
     .tooth { max-width: 240px; }
@@ -516,7 +519,7 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-weight: 600;
     font-size: 15px;
     letter-spacing: 0.04em;
@@ -562,7 +565,7 @@
     width: 100%;
     background: none;
     border: none;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 18px;
     font-weight: 600;
     color: var(--text);
@@ -652,12 +655,12 @@
   }
 
   .price-tag {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 20px;
     font-weight: 700;
     color: var(--primary-deep);
   }
-  .price-tag small { display: block; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .price-tag small { display: block; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
 
   .services-side {
     display: grid;
@@ -816,7 +819,7 @@
   }
 
   .stat strong {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 34px;
     display: block;
     color: var(--primary-deep);
@@ -876,6 +879,83 @@
     .team-photo { height: 220px; }
   }
 
+  /* ---------- ISKUSTVA ---------- */
+
+  .stars { display: inline-flex; gap: 3px; color: var(--primary); }
+  .stars svg { width: 15px; height: 15px; }
+
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .quote-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s ease, border-color .3s ease;
+  }
+  .quote-card:hover { transform: translateY(-6px); border-color: var(--primary); }
+
+  .quote-mark {
+    position: absolute;
+    top: 26px;
+    right: 28px;
+    width: 42px;
+    height: 42px;
+    color: var(--primary-soft);
+  }
+
+  .quote-card .stars { margin-bottom: 18px; }
+
+  .quote-card blockquote {
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 24px;
+    flex: 1;
+  }
+
+  .quote-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+
+  .quote-author .qa-photo {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #eef4ef, #d9e7dd);
+    border: 1px solid var(--border);
+    color: var(--primary-dark);
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .quote-author h3 { font-size: 15px; margin-bottom: 2px; }
+  .quote-author span { font-size: 13px; color: var(--primary-dark); }
+
+  @media (max-width: 991px) {
+    .quotes-grid { grid-template-columns: 1fr; }
+  }
+
   /* ---------- KONTAKT ---------- */
 
   .contact-card {
@@ -915,7 +995,7 @@
     padding-bottom: 13px;
     padding-left: 16px;
     padding-right: 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 15px;
     color: var(--text);
     background: #ffffff;
@@ -1040,7 +1120,7 @@
   @media (max-width: 768px) {
     h2 { font-size: 30px; }
     .h2-upper { font-size: 26px; }
-    .section { padding-top: 64px; padding-bottom: 64px; }
+    :root { --pad: 64px; }
     .section-head { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 36px; }
     .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   }
@@ -1064,7 +1144,9 @@
 </head>
 <body>
 
-<header class="navbar">
+<div class="top">
+
+<header class="navbar" id="navbar">
   <div class="wrap navbar-inner">
     <a href="#" class="logo">
       <img src="assets/download-removebg-preview.png" alt="Dental Vero logo">
@@ -1080,6 +1162,7 @@
       <a href="#zasto">Zašto nas biraju</a>
       <a href="#o-nama">O ordinaciji</a>
       <a href="#tim">Tim</a>
+      <a href="#iskustva">Iskustva</a>
       <a href="#kontakt">Kontakt</a>
       <a href="#kontakt" class="btn btn-primary">Zakaži pregled</a>
     </nav>
@@ -1087,9 +1170,8 @@
 </header>
 
 <section class="hero">
-  <div class="wrap">
-    <div class="hero-card">
-      <div class="hero-deco" aria-hidden="true">
+  <div class="wrap hero-inner">
+    <div class="hero-deco" aria-hidden="true">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <svg class="dots" viewBox="0 0 140 90" fill="currentColor">
@@ -1184,10 +1266,11 @@
         <a href="#kontakt" class="note-arrow" aria-label="Idi do forme za zakazivanje">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
         </a>
-      </div>
     </div>
   </div>
 </section>
+
+</div><!-- /.top -->
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
@@ -1536,6 +1619,66 @@
   </div>
 </section>
 
+<section class="section" id="iskustva">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Iskustva</span>
+        <h2 class="h2-upper">Šta kažu pacijenti</h2>
+      </div>
+      <div>
+        <p class="lead">Recenzije prepisujemo sa Google profila ordinacije, bez skraćivanja.</p>
+        <a href="#" class="link-more" style="margin-top:18px">
+          Vidi sve recenzije na Google profilu
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="quotes-grid">
+      <div class="quote-card reveal">
+        <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5C6 6.4 4 9.4 4 13.2 4 16.6 5.9 19 8.6 19c2.3 0 4-1.7 4-4 0-2.2-1.5-3.8-3.6-3.8-.4 0-.8 0-1.1.2.4-1.7 1.6-3.1 3.4-4.1zm10 0C16 6.4 14 9.4 14 13.2 14 16.6 15.9 19 18.6 19c2.3 0 4-1.7 4-4 0-2.2-1.5-3.8-3.6-3.8-.4 0-.8 0-1.1.2.4-1.7 1.6-3.1 3.4-4.1z"/></svg>
+        <div class="stars" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg></div>
+        <blockquote>Ovde ide pravo iskustvo pacijenta. Zamenite ovaj tekst recenzijom sa Google profila ordinacije, tri do četiri rečenice su dovoljne.</blockquote>
+        <div class="quote-author">
+          <div class="qa-photo">FOTO</div>
+          <div>
+            <h3>Ime pacijenta</h3>
+            <span>Terapija karijesa</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card reveal">
+        <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5C6 6.4 4 9.4 4 13.2 4 16.6 5.9 19 8.6 19c2.3 0 4-1.7 4-4 0-2.2-1.5-3.8-3.6-3.8-.4 0-.8 0-1.1.2.4-1.7 1.6-3.1 3.4-4.1zm10 0C16 6.4 14 9.4 14 13.2 14 16.6 15.9 19 18.6 19c2.3 0 4-1.7 4-4 0-2.2-1.5-3.8-3.6-3.8-.4 0-.8 0-1.1.2.4-1.7 1.6-3.1 3.4-4.1z"/></svg>
+        <div class="stars" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg></div>
+        <blockquote>Prostor za drugu recenziju. Najbolje rade one koje pominju konkretan tretman i koliko je trajao, jer to novi pacijenti i traže.</blockquote>
+        <div class="quote-author">
+          <div class="qa-photo">FOTO</div>
+          <div>
+            <h3>Ime pacijenta</h3>
+            <span>Endodoncija</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card reveal">
+        <svg class="quote-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5C6 6.4 4 9.4 4 13.2 4 16.6 5.9 19 8.6 19c2.3 0 4-1.7 4-4 0-2.2-1.5-3.8-3.6-3.8-.4 0-.8 0-1.1.2.4-1.7 1.6-3.1 3.4-4.1zm10 0C16 6.4 14 9.4 14 13.2 14 16.6 15.9 19 18.6 19c2.3 0 4-1.7 4-4 0-2.2-1.5-3.8-3.6-3.8-.4 0-.8 0-1.1.2.4-1.7 1.6-3.1 3.4-4.1z"/></svg>
+        <div class="stars" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.2-5.9 3.2 1.2-6.5L2.5 9.5l6.6-.9z"/></svg></div>
+        <blockquote>Prostor za treću recenziju. Ako pacijent pomene ime doktora i kako mu je objašnjen plan lečenja, ostavite to u tekstu.</blockquote>
+        <div class="quote-author">
+          <div class="qa-photo">FOTO</div>
+          <div>
+            <h3>Ime pacijenta</h3>
+            <span>Protetika</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section class="section" id="kontakt">
   <div class="wrap">
     <div class="contact-card reveal">
@@ -1645,6 +1788,7 @@
       <a href="#zasto">Zašto nas biraju</a>
       <a href="#o-nama">O ordinaciji</a>
       <a href="#tim">Naš tim</a>
+      <a href="#iskustva">Iskustva pacijenata</a>
     </div>
 
     <div class="footer-col">
@@ -1693,6 +1837,15 @@
   document.querySelectorAll('.nav-menu a').forEach(function (link) {
     link.addEventListener('click', function () { toggle.checked = false; });
   });
+
+  /* Navbar dobija belu pozadinu kad se odskroluje sa hera */
+  var navbar = document.getElementById('navbar');
+  function onScroll() {
+    if (window.scrollY > 40) navbar.classList.add('solid');
+    else navbar.classList.remove('solid');
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
